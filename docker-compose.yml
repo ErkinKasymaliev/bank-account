@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./
+    image: bank-account-images
+    container_name: bank-account
+    ports:
+      - "9090:9090"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/bankdb
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=pass
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=none
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16.1
+    container_name: bank-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: bankdb
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 5s
+      interval: 5s
+      retries: 10
+

@@ -1,0 +1,40 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /api/v1/
+spring:
+  application:
+  name: bank-account
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  flyway:
+    locations: classpath:db/migration
+    enabled: true
+    baseline-on-migrate: true
+    baseline-version: 1
+  springdoc:
+    api-docs:
+      path: /api-docs
+    swagger-ui:
+      path: /swagger-ui.html
+logging:
+  level:
+    kg:
+      kasymaliev: debug
+    org:
+      springframework:
+        cloud:
+          sleuth: debug
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
