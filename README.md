@@ -1,4 +1,4 @@
-# Getting Started
+# REST API for managing users and their accounts in the banking system.
 
 ### Stack
 1) Java 21

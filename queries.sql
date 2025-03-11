@@ -8,4 +8,4 @@ select u.* from user u where u.email = 'someEmail@mail.kg';
 select u.* from user u where u.email like '%someEmail%'; -- если нужен примерный поиск
 
 --Получить сумму всех средств в системе.
-select sum(a.balance) from account;
+select sum(a.balance) from account a;
